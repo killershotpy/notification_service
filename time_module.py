@@ -1,7 +1,6 @@
 import time
 
 from datetime import timedelta
-# from pytz import utc
 
 
 def get_any_days(value: int = 365):
