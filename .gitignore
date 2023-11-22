@@ -82,6 +82,7 @@ dmypy.json
 
 # my file's
 test.py
+test_local.py
 test_server.py
 key
 api_key
