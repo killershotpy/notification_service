@@ -1,10 +1,8 @@
 from flask import request, render_template, abort, session
 
 import global_parameters as g
-# from api_responses import api_jr
-from mongodb_module import TokenAuth
-from captcha import Captcha
-# from send_email_for_users import SendEmail
+from api_responses import api_jr
+from mongodb_module import FirstClass
 
 
 class Auth:
@@ -31,37 +29,19 @@ class Auth:
 
 
 def main():
-    return render_template(g.PagesNames.main_users)
+    return render_template(g.PagesNames.default_page)
 
 
-def main_og(robots: str = None, lang: str = None, uuid: str = None):
+def first_route(*args, **kwargs):
     if request.method == 'GET':
-        if uuid and lang:
-            query = g.DB.agr_form_get_publication(lang, uuid)
+        if ...:
+            query = ...
             if query:
-                return render_template(g.PagesNames.main_users)
+                return ...
             else:
                 return abort(404)
         else:
             return abort(404)
-    if request.method == 'POST':
-        return abort(405)
-    else:
-        return abort(405)
-
-
-def api_get_captcha():  # private API for generate & add in data base captcha
-    if request.method == 'GET':
-        if request.referrer:
-            if any(ref in request.referrer for ref in g.PathNames.list_current_domains) is True:
-                if request.args:
-                    return Captcha.create(**request.args)
-                else:
-                    return abort(422)
-            else:
-                return abort(403)
-        else:
-            return abort(403)
     if request.method == 'POST':
         return abort(405)
     else:
