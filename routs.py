@@ -3,7 +3,7 @@ import main_routes as m
 from global_parameters import RulesRoutes as Rule
 
 
-routes = {Rule.main: {'f': m.main, 'm': ['GET']}}
+routes = {Rule.main: {'f': m.main, 'm': ['GET'], 'p': False}}
 
 errors = {400: e.c_400,
           401: e.c_401,

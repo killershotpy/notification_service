@@ -21,7 +21,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = days(365)
 [app.register_error_handler(code, func) for code, func in e.items()]
 
 # ##########################################################___REGISTERED_ROUTES___#################################################
-[app.add_url_rule(rule, methods=param.get('m'), view_func=param.get('f')) for rule, param in r.items()]
+[app.add_url_rule(rule, methods=param.get('m'), view_func=param.get('f'), provide_automatic_options=param.get('p', None)) for rule, param in r.items()]
 
 
 if __name__ == "__main__":

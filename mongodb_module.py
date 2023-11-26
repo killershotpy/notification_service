@@ -1,5 +1,21 @@
 import global_parameters as g
 
 
-class FirstClass:
-    ...
+class EditNotify:
+    @staticmethod
+    def create():
+        ...
+
+    @staticmethod
+    def delete():
+        ...
+
+    @staticmethod
+    def update():
+        ...
+
+
+class GetNotify:
+    @staticmethod
+    def create():
+        ...
