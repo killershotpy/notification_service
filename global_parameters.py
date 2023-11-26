@@ -14,6 +14,8 @@ class KV:
     """name's value's (global key's)"""
     uuid = 'uuid'
     db_id = '_id'
+    system_title = 'system_title'
+    notifications = 'notifications'
     frontend_cache_control = 'Cache-Control'
     frontend_cache_control_types = ['no-cache', 'no-store', 'public', 'private']
 
@@ -48,7 +50,8 @@ class DB:
     redis_port = 58995
 
     # names collection's
-    collection = 'collection'
+    notifications = 'notifications'
+    users = 'users'
 
     # limit's
     len_uuid = 32
@@ -126,10 +129,6 @@ RulesRoutes = RulesRoutes()
 PagesNames = PagesNames()
 Aes = Aes()
 SpecialApiKey = load_app_api_key()  # return encrypted special only api key
-
-# normalization symbol's
-rs_symbols = str.maketrans({"!": None, "@": None, "#": None, "№": None, "$": None, ";": None, "%": None, "^": None, ":": None, "&": None, "?": None, "*": None, "(": None, ")": None, "=": None, "+": None, "{": None, "}": None, "[": None, "]": None, "\"": None, "\'": None, "<": None, ">": None, "|": None, "\\": None, "/": None, ",": None, ".": None, "~": None, "`": None, " ": None, " ": None})
-rs_symbols_easy = str.maketrans({"!": None, "@": None, "#": None, "№": None, "$": None, ";": None, "%": None, "^": None, ":": None, "&": None, "?": None, "*": None, "=": None, "+": None, "{": None, "}": None, "[": None, "]": None, "\"": None, "\'": None, "<": None, ">": None, "|": None, "\\": None, "/": None, ",": None, ".": None, "~": None, "`": None})
 
 
 def gen_sm_name(_len: int = 32) -> str:
