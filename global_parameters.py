@@ -47,7 +47,6 @@ class DB:
     db_name = 'notify_center'
     localhost = '127.0.0.1'
     mongo_port = 58999
-    redis_port = 58995
 
     # names collection's
     notifications = 'notifications'
@@ -107,24 +106,12 @@ class ConnectMongo:
     def __delattr__(self, item): raise NotImplementedError('it is not possible to delete this configuration class of an application')
 
 
-class ConnectRedis:
-    pool = ConnectionPool(host=DB.localhost, port=DB.redis_port, db=0, socket_connect_timeout=15, socket_timeout=15)
-
-    def connect(self):
-        return Redis(connection_pool=self.pool)
-
-    def __setattr__(self, *args, **kwargs): raise NotImplementedError('can\'t rewrite attributes')
-    def __delete__(self, instance): raise NotImplementedError('it is not possible to delete this configuration class of an application')
-    def __delattr__(self, item): raise NotImplementedError('it is not possible to delete this configuration class of an application')
-
-
 # initialization classes and update locale file's
 Test = False  # testing functions, if True, or False = off test lines of code
 KV = KV()
 PathNames = PathNames()
 DB = DB()
 ConnectMongo = ConnectMongo()
-ConnectRedis = ConnectRedis()
 RulesRoutes = RulesRoutes()
 PagesNames = PagesNames()
 Aes = Aes()
