@@ -5,7 +5,7 @@ from werkzeug.wrappers.response import Response
 from global_parameters import KV as KV
 
 
-def api_jr(data,
+def api_jr(data=b'',
            status: int = 200,
            cache: list = None):
     """Create standard json response
@@ -16,7 +16,7 @@ def api_jr(data,
     :return: application/json response
     """
     response = Response(response=json.dumps(data, ensure_ascii=False) if isinstance(data, dict) else data,
-                        status=status,
+                        status=204 if isinstance(data, bytes) else status,
                         mimetype='application/json',
                         headers={'Accept': 'application/json'})
     if KV.frontend_cache_control not in response.headers and not cache:

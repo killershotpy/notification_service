@@ -13,4 +13,4 @@ g.ConnectMongo.for_update.get_collection(g.DB.notifications).create_index([(f'{g
 g.ConnectMongo.for_update.drop_collection(g.DB.users)
 g.ConnectMongo.for_update.create_collection(g.DB.users)
 g.ConnectMongo.for_update.get_collection(g.DB.users).create_index(g.KV.uuid, unique=True)
-g.ConnectMongo.for_update.get_collection(g.DB.users).create_index(f'{g.KV.notifications}.{g.KV.uuid}', unique=True)
+g.ConnectMongo.for_update.get_collection(g.DB.users).create_index(f'{g.KV.notifications}.{g.KV.uuid}')

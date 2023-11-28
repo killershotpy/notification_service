@@ -28,6 +28,8 @@ class KV:
     notifications = 'notifications'
     date_create = 'date_create'
     date_update = 'date_update'
+    data = 'data'
+    is_read = 'is_read'
 
     frontend_cache_control = 'Cache-Control'
     frontend_cache_control_types = ['no-cache', 'no-store', 'public', 'private']
@@ -92,6 +94,10 @@ class DB:
         result_model[KV.date_update] = None
         result_model[KV.uuid] = gen_sm_name()
         return result_model
+
+    @staticmethod
+    def update_notify(uuid: str, **kwargs):
+        return {KV.uuid: uuid, KV.data: {**kwargs}}
 
     @staticmethod
     def create_token_cookie():
