@@ -42,4 +42,4 @@ def open_session():
 
 
 if __name__ == "__main__":
-    app.run(host=g.config.get('host_app', '127.0.0.1'), port=g.config.get('port_app', None))
+    app.run(host=g.config.get('host_app', '127.0.0.1'), port=g.config.get('port_app', 19008))
