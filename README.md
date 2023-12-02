@@ -1,4 +1,4 @@
-#Availiable notification service
+# Availiable notification service
 A handy notification service that you can embed in any of your projects.
 
 The work is based on flask + mongoDB.
@@ -25,7 +25,7 @@ Name **config-file** must be:
 
     config_app.ini
 ##
-###Default config parameters:
+### Default config parameters:
 
     name_db = notify_center
     address_db = 127.0.0.1
@@ -35,7 +35,8 @@ Name **config-file** must be:
     host_app = 127.0.0.1
 
 
-#Default routes:
+# Default routes:
+
     # host_app routes
     /api/v1/create_notify
     /api/v1/delete_notify/<string(length=32):uuid>
