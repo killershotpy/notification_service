@@ -1,4 +1,5 @@
 from flask import request, session
+from json.decoder import JSONDecodeError
 
 import global_parameters as g
 from api_responses import api_jr
@@ -9,7 +10,7 @@ def create_notify():
     if request.method == 'GET':
         return api_jr('Method denied', 405)
     if request.method == 'POST':
-        if request.host_url == g.KV.host_url:
+        if request.host_url == g.KV.host_app:
             try:
                 notify = g.DB.create_notify(**request.json)
                 if notify:
@@ -25,13 +26,13 @@ def create_notify():
         return api_jr('Method denied', 405)
 
 
-def delete_notify():
+def delete_notify(uuid: str = None):
     if request.method == 'GET':
         return api_jr('Method denied', 405)
     if request.method == 'POST':
-        if request.host_url == g.KV.host_url:
+        if request.host_url == g.KV.host_app:
             try:
-                EditNotify.delete(**request.json)
+                EditNotify.delete(uuid)
                 return api_jr()
             except TypeError:
                 return api_jr('Incorrect request body', 422)
@@ -41,18 +42,14 @@ def delete_notify():
         return api_jr('Method denied', 405)
 
 
-def update_notify():
+def update_notify(uuid: str = None):
     if request.method == 'GET':
         return api_jr('Method denied', 405)
     if request.method == 'POST':
-        if request.host_url == g.KV.host_url:
+        if request.host_url == g.KV.host_app:
             try:
-                update = g.DB.update_notify(**request.json)
-                if update:
-                    EditNotify.update(update[g.KV.uuid], update[g.KV.data])
-                    return api_jr()
-                else:
-                    return api_jr('Incorrect request body', 422)
+                EditNotify.update(uuid, {g.KV.data: {**request.json}})
+                return api_jr()
             except TypeError:
                 return api_jr('Incorrect request body', 422)
         else:
@@ -61,32 +58,30 @@ def update_notify():
         return api_jr('Method denied', 405)
 
 
-def get_one_notify(*args, **kwargs):
+def get_one_notify(uuid: str = None):
     if request.method == 'GET':
-        if ...:
-            query = ...
-            if query:
-                return ...
-            else:
-                return api_jr('Incorrect url-address', 404)
-        else:
-            return api_jr('Incorrect url-address', 404)
+        try:
+            try:
+                return api_jr(GetNotify.get_one(uuid, token_cookie=session[g.KV.token]))
+            except StopIteration:
+                return api_jr('Not found', 404)
+        except TypeError:
+            return api_jr('Incorrect request body', 422)
     if request.method == 'POST':
         return api_jr('Method denied', 405)
     else:
         return api_jr('Method denied', 405)
 
 
-def get_all_notify(*args, **kwargs):
+def get_all_notify():
     if request.method == 'GET':
-        if ...:
-            query = ...
-            if query:
-                return ...
-            else:
-                return api_jr('Incorrect url-address', 404)
-        else:
-            return api_jr('Incorrect url-address', 404)
+        try:
+            try:
+                return api_jr(GetNotify.get_all(token_cookie=session[g.KV.token], **request.args))
+            except StopIteration:
+                return api_jr('Not found', 404)
+        except (TypeError, JSONDecodeError):
+            return api_jr('Incorrect request body', 422)
     if request.method == 'POST':
         return api_jr('Method denied', 405)
     else:

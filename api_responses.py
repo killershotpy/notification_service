@@ -15,7 +15,7 @@ def api_jr(data=b'',
     :param cache: directive caching on frontend current request [index[0-3], int]
     :return: application/json response
     """
-    response = Response(response=json.dumps(data, ensure_ascii=False) if isinstance(data, dict) else data,
+    response = Response(response=json.dumps(data, ensure_ascii=False) if isinstance(data, (dict, list)) else data,
                         status=204 if isinstance(data, bytes) else status,
                         mimetype='application/json',
                         headers={'Accept': 'application/json'})

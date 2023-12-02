@@ -86,3 +86,5 @@ test_local.py
 test_server.py
 key
 api_key
+config_app.ini
+uwsgi_config.ini
