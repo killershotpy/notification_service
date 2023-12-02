@@ -47,7 +47,7 @@ Name **config-file** must be:
     /api/v1/get_all_notify
 
 Each route is well designed and automated as much as possible.
-In addition, you don't have to worry if you deploy the application in public access (host=0.0.0.0.0), as the user's uuid is automatically created from their own metadata when they use it:
+In addition, you don't have to worry if you deploy the application in public access (host=0.0.0.0), as the user's uuid is automatically created from their own metadata when they use it:
 - user agent
 - user data query
 - other parameters
