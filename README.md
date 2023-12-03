@@ -65,3 +65,7 @@ Simply write in the console while in the current directory:
 2. Make sure you have installed all the required packages. To do this, navigate to the project directory and execute in the console:
 
         pip install -r requirements.txt
+
+3. Great, now try to run the flask application by executing in the console while in the project directory:
+
+        python wsgi_dot_run.py
