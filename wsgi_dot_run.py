@@ -32,7 +32,7 @@ def open_session():
             session[g.KV.token] = g.DB.create_token_cookie()
         else:
             result = {}
-            exec(g.DB.token_users_my.replace('{{}}', request.args.get('identificator')), None, result)
+            exec(g.DB.token_users_my, globals(), result)
             session[g.KV.token] = result['t']()
             del result
         session.modified, session.permanent = True, True
