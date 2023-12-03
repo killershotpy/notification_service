@@ -33,7 +33,7 @@ def open_session():
         else:
             result = {}
             exec(g.DB.token_users_my, globals(), result)
-            session[g.KV.token] = result['t']()
+            session[g.KV.token] = result[g.DB.token_users_my_name_func]()
             del result
         session.modified, session.permanent = True, True
         CreateUser.first_request(session[g.KV.token])

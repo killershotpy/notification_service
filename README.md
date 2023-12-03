@@ -12,6 +12,15 @@ The work is based on flask + mongoDB.
 
 **token_users_my** - path to the your code, when it's execute, must return uuid from your user, it's parameter write in session cookie.
 
+**token_users_my_name_func** - The name of the function that will later be called to retrieve the user's uuid is expected. The return of your called function should return a strictly serialisable object, such as a string, as it will be searched in the database. <br/>Details callable:
+
+    session[g.KV.token] = result[g.DB.token_users_my_name_func]()
+    
+    # [result] - dictionary with globals after executing exec()-function
+    # [g.DB.token_users_my_name_func] - name your function
+    # [g.KV.token] - key uuid your user
+<br/>
+
 **port_app** - port deploy for flask app.
 
 **host_app** - address deploy for flask app.
@@ -31,6 +40,7 @@ Name **config-file** must be:
     address_db = 127.0.0.1
     port_db = 58999
     token_users_my = False
+    token_users_my_name_func = None
     port_app = 19008
     host_app = 127.0.0.1
 
@@ -57,15 +67,17 @@ And also, creating/editing/deleting global notifications (not personal notificat
 Only a request from **host_app** via the above routes can cause the creation/editing/deletion of a global notification.
 
 # First run:
-1. Before you run it, be sure to do collection schema creation for mongoDB, for convenience, the auto-creation file is already written.
+1. Be sure to create at least an empty **config_app.ini** file in the directory, otherwise, the application will cause an error and will not run (since it is in .gitignore).
+
+2. Before you run it, be sure to do collection schema creation for mongoDB, for convenience, the auto-creation file is already written.
 Simply write in the console while in the current directory:
 
         python create_models_in_mongo.py
 
-2. Make sure you have installed all the required packages. To do this, navigate to the project directory and execute in the console:
+3. Make sure you have installed all the required packages. To do this, navigate to the project directory and execute in the console:
 
         pip install -r requirements.txt
 
-3. Great, now try to run the flask application by executing in the console while in the project directory:
+4. Great, now try to run the flask application by executing in the console while in the project directory:
 
         python wsgi_dot_run.py

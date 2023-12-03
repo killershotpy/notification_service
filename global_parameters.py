@@ -70,6 +70,7 @@ class DB:
     port_db = int(config.get('port_db', 58999))
     if 'token_users_my' in config:
         token_users_my = open(config.get('token_users_my'), 'r', encoding='utf-8-sig').read()
+        token_users_my_name_func = config.get('token_users_my_name_func')
     else:
         token_users_my = False
 
