@@ -55,3 +55,13 @@ In addition, you don't have to worry if you deploy the application in public acc
 And also, creating/editing/deleting global notifications (not personal notifications) is done at the same address that was specified for the application deployment itself.
 
 Only a request from **host_app** via the above routes can cause the creation/editing/deletion of a global notification.
+
+# First run:
+1. Before you run it, be sure to do collection schema creation for mongoDB, for convenience, the auto-creation file is already written.
+Simply write in the console while in the current directory:
+
+        python create_models_in_mongo.py
+
+2. Make sure you have installed all the required packages. To do this, navigate to the project directory and execute in the console:
+
+        pip install -r requirements.txt
